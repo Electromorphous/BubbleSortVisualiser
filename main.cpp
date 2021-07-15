@@ -38,19 +38,19 @@ void display_text()
 	glColor3f(1, 1, 1);
 	bitmap_output(275, 700, "BUBBLE SORT VISUALISER", GLUT_BITMAP_HELVETICA_18);
 
-	bitmap_output(20, 675, "1AY18CS017 : Arthi Vinod", GLUT_BITMAP_8_BY_13);
-	bitmap_output(20, 655, "1AY18CS018 : Aseer", GLUT_BITMAP_8_BY_13);
+	bitmap_output(500, 65, "1AY18CS017 : Arthi Vinod", GLUT_BITMAP_8_BY_13);
+	bitmap_output(500, 45, "1AY18CS018 : Aseer Uz Zaman", GLUT_BITMAP_8_BY_13);
 
 	if (sorting == 0)
 	{
-		bitmap_output(20, 605, "Press S to sort", GLUT_BITMAP_9_BY_15);
-		bitmap_output(20, 575, "Press R to randomise", GLUT_BITMAP_9_BY_15);
-		bitmap_output(20, 545, "Press Esc to quit", GLUT_BITMAP_9_BY_15);
+		bitmap_output(20, 655, "Press S to sort", GLUT_BITMAP_9_BY_15);
+		bitmap_output(20, 625, "Press R to randomise", GLUT_BITMAP_9_BY_15);
+		bitmap_output(20, 595, "Press Esc to quit", GLUT_BITMAP_9_BY_15);
 	}
 	else if (sorting == 1)
 	{
-		bitmap_output(20, 605, "Sorting in progress...", GLUT_BITMAP_9_BY_15);
-		bitmap_output(20, 575, "Press P to pasue", GLUT_BITMAP_9_BY_15);
+		bitmap_output(20, 655, "Sorting in progress...", GLUT_BITMAP_9_BY_15);
+		bitmap_output(20, 625, "Press P to pasue", GLUT_BITMAP_9_BY_15);
 	}
 }
 
@@ -94,27 +94,51 @@ void display()
 
 	for (ix = 0; ix < MAX; ix++)
 	{
-		glColor3f(1, 0, 0);
-		glBegin(GL_LINE_STRIP);
-		glVertex2f(10 + (700 / (MAX + 1)) * ix, 50);
-		glVertex2f(10 + (700 / (MAX + 1)) * (ix + 1), 50);
-		glVertex2f(10 + (700 / (MAX + 1)) * (ix + 1), 50 + a[ix] * 4);
-		glVertex2f(10 + (700 / (MAX + 1)) * ix, 50 + a[ix] * 4);
+		float red = 1.3 * a[ix] / 100.0;
+		float blue = 20.0 / a[ix];
+		float green = 0.17 / abs(0.5 - a[ix] / 100.0);
+		if (red > 1.0)
+			red = 1.0;
+		if (green > 1.0)
+			green = 1.0;
+		if (blue > 1.0)
+			blue = 1.0;
+		// cout << red << " " << green << " " << blue << endl;
+		glColor3f(red, green, blue);
+		glBegin(GL_POLYGON);
+		glVertex2f(10 + (700 / (MAX + 1)) * ix, 150);
+		glVertex2f(10 + (700 / (MAX + 1)) * (ix + 1), 150);
+		glVertex2f(10 + (700 / (MAX + 1)) * (ix + 1), 150 + a[ix] * 4);
+		glVertex2f(10 + (700 / (MAX + 1)) * ix, 150 + a[ix] * 4);
+		glEnd();
+		glColor3f(0, 0, 0);
+		glBegin(GL_LINE_LOOP);
+		glVertex2f(10 + (700 / (MAX + 1)) * ix, 150);
+		glVertex2f(10 + (700 / (MAX + 1)) * (ix + 1), 150);
+		glVertex2f(10 + (700 / (MAX + 1)) * (ix + 1), 150 + a[ix] * 4);
+		glVertex2f(10 + (700 / (MAX + 1)) * ix, 150 + a[ix] * 4);
 		glEnd();
 
 		int_str(a[ix], text);
 		glColor3f(1, 1, 1);
-		bitmap_output(13 + (700 / (MAX + 1)) * ix, 35, text, GLUT_BITMAP_HELVETICA_10);
+		bitmap_output(13 + (700 / (MAX + 1)) * ix, 135, text, GLUT_BITMAP_HELVETICA_10);
 	}
 
 	if (swapflag || sorting == 0)
 	{
-		glColor3f(0, 0, 1);
+		glColor3f(1, 1, 1);
 		glBegin(GL_POLYGON);
-		glVertex2f(10 + (700 / (MAX + 1)) * j, 50);
-		glVertex2f(10 + (700 / (MAX + 1)) * (j + 1), 50);
-		glVertex2f(10 + (700 / (MAX + 1)) * (j + 1), 50 + a[j] * 4);
-		glVertex2f(10 + (700 / (MAX + 1)) * j, 50 + a[j] * 4);
+		glVertex2f(10 + (700 / (MAX + 1)) * j, 150);
+		glVertex2f(10 + (700 / (MAX + 1)) * (j + 1), 150);
+		glVertex2f(10 + (700 / (MAX + 1)) * (j + 1), 150 + a[j] * 4);
+		glVertex2f(10 + (700 / (MAX + 1)) * j, 150 + a[j] * 4);
+		glEnd();
+		glColor3f(0, 0, 0);
+		glBegin(GL_LINE_LOOP);
+		glVertex2f(10 + (700 / (MAX + 1)) * j, 150);
+		glVertex2f(10 + (700 / (MAX + 1)) * (j + 1), 150);
+		glVertex2f(10 + (700 / (MAX + 1)) * (j + 1), 150 + a[j] * 4);
+		glVertex2f(10 + (700 / (MAX + 1)) * j, 150 + a[j] * 4);
 		glEnd();
 		swapflag = 0;
 	}
