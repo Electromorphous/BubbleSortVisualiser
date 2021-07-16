@@ -133,13 +133,6 @@ void display()
 		glVertex2f(10 + (700 / (MAX + 1)) * (ix + 1), 150 + a[ix] * 4);
 		glVertex2f(10 + (700 / (MAX + 1)) * ix, 150 + a[ix] * 4);
 		glEnd();
-		glColor3f(0, 0, 0);
-		glBegin(GL_LINE_LOOP);
-		glVertex2f(10 + (700 / (MAX + 1)) * ix, 150);
-		glVertex2f(10 + (700 / (MAX + 1)) * (ix + 1), 150);
-		glVertex2f(10 + (700 / (MAX + 1)) * (ix + 1), 150 + a[ix] * 4);
-		glVertex2f(10 + (700 / (MAX + 1)) * ix, 150 + a[ix] * 4);
-		glEnd();
 
 		int_str(a[ix], text);
 		glColor3f(1, 1, 1);
@@ -148,20 +141,13 @@ void display()
 
 	if (swapflag || sorting == 0)
 	{
-		// glColor3f(1, 1, 1);
-		// glBegin(GL_POLYGON);
-		// glVertex2f(10 + (700 / (MAX + 1)) * j, 150);
-		// glVertex2f(10 + (700 / (MAX + 1)) * (j + 1), 150);
-		// glVertex2f(10 + (700 / (MAX + 1)) * (j + 1), 150 + a[j] * 4);
-		// glVertex2f(10 + (700 / (MAX + 1)) * j, 150 + a[j] * 4);
-		// glEnd();
-		// glColor3f(0, 0, 0);
-		// glBegin(GL_LINE_LOOP);
-		// glVertex2f(10 + (700 / (MAX + 1)) * j, 150);
-		// glVertex2f(10 + (700 / (MAX + 1)) * (j + 1), 150);
-		// glVertex2f(10 + (700 / (MAX + 1)) * (j + 1), 150 + a[j] * 4);
-		// glVertex2f(10 + (700 / (MAX + 1)) * j, 150 + a[j] * 4);
-		// glEnd();
+		glColor3f(1, 1, 1);
+		glBegin(GL_POLYGON);
+		glVertex2f(10 + (700 / (MAX + 1)) * j, 150);
+		glVertex2f(10 + (700 / (MAX + 1)) * (j + 1), 150);
+		glVertex2f(10 + (700 / (MAX + 1)) * (j + 1), 150 + a[j] * 4);
+		glVertex2f(10 + (700 / (MAX + 1)) * j, 150 + a[j] * 4);
+		glEnd();
 		swapflag = 0;
 	}
 	glFlush();
