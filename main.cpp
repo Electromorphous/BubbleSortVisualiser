@@ -36,21 +36,33 @@ void int_str(int rad, char r[])
 void display_text()
 {
 	glColor3f(1, 1, 1);
-	bitmap_output(275, 700, "BUBBLE SORT VISUALISER", GLUT_BITMAP_HELVETICA_18);
+	char title[25];
+	strcpy(title, "BUBBLE SORT VISUALISER");
+	bitmap_output(275, 700, title, GLUT_BITMAP_HELVETICA_18);
 
-	bitmap_output(500, 65, "1AY18CS017 : Arthi Vinod", GLUT_BITMAP_8_BY_13);
-	bitmap_output(500, 45, "1AY18CS018 : Aseer Uz Zaman", GLUT_BITMAP_8_BY_13);
+	char students[2][30];
+	strcpy(students[0], "1AY18CS017 : Arthi Vinod");
+	strcpy(students[1], "1AY18CS018 : Aseer Uz Zaman");
+	bitmap_output(500, 65, students[0], GLUT_BITMAP_8_BY_13);
+	bitmap_output(500, 45, students[1], GLUT_BITMAP_8_BY_13);
 
 	if (sorting == 0)
 	{
-		bitmap_output(20, 655, "Press S to sort", GLUT_BITMAP_9_BY_15);
-		bitmap_output(20, 625, "Press R to randomise", GLUT_BITMAP_9_BY_15);
-		bitmap_output(20, 595, "Press Esc to quit", GLUT_BITMAP_9_BY_15);
+		char messages[3][25];
+		strcpy(messages[0], "Press S to sort");
+		strcpy(messages[1], "Press R to randomise");
+		strcpy(messages[2], "Press Esc to quit");
+		bitmap_output(20, 655, messages[0], GLUT_BITMAP_9_BY_15);
+		bitmap_output(20, 625, messages[1], GLUT_BITMAP_9_BY_15);
+		bitmap_output(20, 595, messages[2], GLUT_BITMAP_9_BY_15);
 	}
 	else if (sorting == 1)
 	{
-		bitmap_output(20, 655, "Sorting in progress...", GLUT_BITMAP_9_BY_15);
-		bitmap_output(20, 625, "Press P to pasue", GLUT_BITMAP_9_BY_15);
+		char messages[2][25];
+		strcpy(messages[0], "Sorting in progress...");
+		strcpy(messages[1], "Press P to pause");
+		bitmap_output(20, 655, messages[0], GLUT_BITMAP_9_BY_15);
+		bitmap_output(20, 625, messages[1], GLUT_BITMAP_9_BY_15);
 	}
 }
 
@@ -94,9 +106,9 @@ void display()
 
 	for (ix = 0; ix < MAX; ix++)
 	{
-		float red = 1.3 * a[ix] / 100.0;
-		float blue = 20.0 / a[ix];
-		float green = 0.17 / abs(0.5 - a[ix] / 100.0);
+		float red = 1.4 * a[ix] / 100.0;
+		float blue = 25.0 / a[ix];
+		float green = (0.1 / abs(0.5 - a[ix] / 100.0) - 0.15) * 2.0;
 		if (red > 1.0)
 			red = 1.0;
 		if (green > 1.0)
