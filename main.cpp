@@ -13,6 +13,8 @@ int a[MAX];		  // Array
 int swapflag = 0; // Flag to check if swapping has occured
 int i = 0, j = 0; // To iterate through the array
 int sorting = 0;  // 1 if Sorted
+char title[25];
+int titleHeight = 800;
 
 // Function to display text on screen
 void bitmap_output(int x, int y, char *string, void *font)
@@ -36,9 +38,7 @@ void int_str(int rad, char r[])
 void display_text()
 {
 	glColor3f(1, 1, 1);
-	char title[25];
 	strcpy(title, "BUBBLE SORT VISUALISER");
-	bitmap_output(275, 700, title, GLUT_BITMAP_HELVETICA_18);
 
 	char students[2][30];
 	strcpy(students[0], "1AY18CS017 : Arthi Vinod");
@@ -71,9 +71,9 @@ void Initialize()
 	for (int temp = 0; temp < MAX; temp++)
 	{
 		a[temp] = rand() % 100 + 1;
-		cout << a[temp] << " ";
+		// cout << a[temp] << " ";
 	}
-	cout << endl;
+	// cout << endl;
 
 	i = j = 0;
 
@@ -102,8 +102,18 @@ void display()
 	glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
 
 	display_text();
-	char text[10];
 
+	if (titleHeight > 700)
+	{
+		bitmap_output(275, titleHeight, title, GLUT_BITMAP_HELVETICA_18);
+		titleHeight -= 7;
+	}
+	else
+	{
+		bitmap_output(275, 700, title, GLUT_BITMAP_HELVETICA_18);
+	}
+
+	char text[10];
 	for (ix = 0; ix < MAX; ix++)
 	{
 		float red = 1.4 * a[ix] / 100.0;
@@ -138,20 +148,20 @@ void display()
 
 	if (swapflag || sorting == 0)
 	{
-		glColor3f(1, 1, 1);
-		glBegin(GL_POLYGON);
-		glVertex2f(10 + (700 / (MAX + 1)) * j, 150);
-		glVertex2f(10 + (700 / (MAX + 1)) * (j + 1), 150);
-		glVertex2f(10 + (700 / (MAX + 1)) * (j + 1), 150 + a[j] * 4);
-		glVertex2f(10 + (700 / (MAX + 1)) * j, 150 + a[j] * 4);
-		glEnd();
-		glColor3f(0, 0, 0);
-		glBegin(GL_LINE_LOOP);
-		glVertex2f(10 + (700 / (MAX + 1)) * j, 150);
-		glVertex2f(10 + (700 / (MAX + 1)) * (j + 1), 150);
-		glVertex2f(10 + (700 / (MAX + 1)) * (j + 1), 150 + a[j] * 4);
-		glVertex2f(10 + (700 / (MAX + 1)) * j, 150 + a[j] * 4);
-		glEnd();
+		// glColor3f(1, 1, 1);
+		// glBegin(GL_POLYGON);
+		// glVertex2f(10 + (700 / (MAX + 1)) * j, 150);
+		// glVertex2f(10 + (700 / (MAX + 1)) * (j + 1), 150);
+		// glVertex2f(10 + (700 / (MAX + 1)) * (j + 1), 150 + a[j] * 4);
+		// glVertex2f(10 + (700 / (MAX + 1)) * j, 150 + a[j] * 4);
+		// glEnd();
+		// glColor3f(0, 0, 0);
+		// glBegin(GL_LINE_LOOP);
+		// glVertex2f(10 + (700 / (MAX + 1)) * j, 150);
+		// glVertex2f(10 + (700 / (MAX + 1)) * (j + 1), 150);
+		// glVertex2f(10 + (700 / (MAX + 1)) * (j + 1), 150 + a[j] * 4);
+		// glVertex2f(10 + (700 / (MAX + 1)) * j, 150 + a[j] * 4);
+		// glEnd();
 		swapflag = 0;
 	}
 	glFlush();
