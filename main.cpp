@@ -6,8 +6,8 @@
 
 using namespace std;
 
-#define MAX 50	  // Number of values in the array
-#define SPEED 700 // Speed of sorting, must be greater than MAX always
+#define MAX 200	  // Number of values in the array
+#define SPEED 201 // Speed of sorting, must be greater than MAX always
 
 int a[MAX];		  // Array
 int swapflag = 0; // Flag to check if swapping has occured
@@ -128,25 +128,25 @@ void display()
 		// cout << red << " " << green << " " << blue << endl;
 		glColor3f(red, green, blue);
 		glBegin(GL_POLYGON);
-		glVertex2f(10 + (700 / (MAX + 1)) * ix, 150);
-		glVertex2f(10 + (700 / (MAX + 1)) * (ix + 1), 150);
-		glVertex2f(10 + (700 / (MAX + 1)) * (ix + 1), 150 + a[ix] * 4);
-		glVertex2f(10 + (700 / (MAX + 1)) * ix, 150 + a[ix] * 4);
+		glVertex2f(50 + (700 / (MAX + 1)) * ix, 150);
+		glVertex2f(50 + (700 / (MAX + 1)) * (ix + 1), 150);
+		glVertex2f(50 + (700 / (MAX + 1)) * (ix + 1), 150 + a[ix] * 4);
+		glVertex2f(50 + (700 / (MAX + 1)) * ix, 150 + a[ix] * 4);
 		glEnd();
 
-		int_str(a[ix], text);
-		glColor3f(1, 1, 1);
-		bitmap_output(13 + (700 / (MAX + 1)) * ix, 135, text, GLUT_BITMAP_HELVETICA_10);
+		// int_str(a[ix], text);
+		// glColor3f(1, 1, 1);
+		// bitmap_output(13 + (700 / (MAX + 1)) * ix, 135, text, GLUT_BITMAP_HELVETICA_10);
 	}
 
 	if (swapflag || sorting == 0)
 	{
 		glColor3f(1, 1, 1);
 		glBegin(GL_POLYGON);
-		glVertex2f(10 + (700 / (MAX + 1)) * j, 150);
-		glVertex2f(10 + (700 / (MAX + 1)) * (j + 1), 150);
-		glVertex2f(10 + (700 / (MAX + 1)) * (j + 1), 150 + a[j] * 4);
-		glVertex2f(10 + (700 / (MAX + 1)) * j, 150 + a[j] * 4);
+		glVertex2f(50 + (700 / (MAX + 1)) * j, 150);
+		glVertex2f(50 + (700 / (MAX + 1)) * (j + 1), 150);
+		glVertex2f(50 + (700 / (MAX + 1)) * (j + 1), 150 + a[j] * 4);
+		glVertex2f(50 + (700 / (MAX + 1)) * j, 150 + a[j] * 4);
 		glEnd();
 		swapflag = 0;
 	}
