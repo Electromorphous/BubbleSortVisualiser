@@ -117,8 +117,8 @@ void display()
 	for (ix = 0; ix < MAX; ix++)
 	{
 		float red = 1.4 * a[ix] / 100.0;
-		float blue = 25.0 / a[ix];
-		float green = (0.1 / abs(0.5 - a[ix] / 100.0) - 0.15) * 2.0;
+		float blue = 29.0 / a[ix];
+		float green = (0.1 / abs(0.5 - a[ix] / 100.0) - 0.15) * 4.0;
 		if (red > 1.0)
 			red = 1.0;
 		if (green > 1.0)
