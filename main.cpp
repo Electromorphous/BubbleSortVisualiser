@@ -106,7 +106,7 @@ void display()
 	if (titleHeight > 700)
 	{
 		bitmap_output(275, titleHeight, title, GLUT_BITMAP_HELVETICA_18);
-		titleHeight -= 7;
+		titleHeight--;
 	}
 	else
 	{
