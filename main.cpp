@@ -17,7 +17,7 @@ char title[25];
 int titleHeight = 800;
 
 // Function to display text on screen
-void bitmap_output(int x, int y, char *string, void *font)
+void bitmap_text(int x, int y, char *string, void *font)
 {
 	int len, i;
 
@@ -35,7 +35,7 @@ void int_str(int rad, char r[])
 	sprintf(r, "%d", rad);
 }
 
-void display_text()
+void display_messages()
 {
 	glColor3f(1, 1, 1);
 	strcpy(title, "BUBBLE SORT VISUALISER");
@@ -43,8 +43,8 @@ void display_text()
 	char students[2][30];
 	strcpy(students[0], "1AY18CS017 : Arthi Vinod");
 	strcpy(students[1], "1AY18CS018 : Aseer Uz Zaman");
-	bitmap_output(500, 65, students[0], GLUT_BITMAP_8_BY_13);
-	bitmap_output(500, 45, students[1], GLUT_BITMAP_8_BY_13);
+	bitmap_text(500, 65, students[0], GLUT_BITMAP_8_BY_13);
+	bitmap_text(500, 45, students[1], GLUT_BITMAP_8_BY_13);
 
 	if (sorting == 0)
 	{
@@ -52,17 +52,17 @@ void display_text()
 		strcpy(messages[0], "Press S to sort");
 		strcpy(messages[1], "Press R to randomise");
 		strcpy(messages[2], "Press Esc to quit");
-		bitmap_output(20, 655, messages[0], GLUT_BITMAP_9_BY_15);
-		bitmap_output(20, 625, messages[1], GLUT_BITMAP_9_BY_15);
-		bitmap_output(20, 595, messages[2], GLUT_BITMAP_9_BY_15);
+		bitmap_text(20, 655, messages[0], GLUT_BITMAP_9_BY_15);
+		bitmap_text(20, 625, messages[1], GLUT_BITMAP_9_BY_15);
+		bitmap_text(20, 595, messages[2], GLUT_BITMAP_9_BY_15);
 	}
 	else if (sorting == 1)
 	{
 		char messages[2][25];
 		strcpy(messages[0], "Sorting in progress...");
 		strcpy(messages[1], "Press P to pause");
-		bitmap_output(20, 655, messages[0], GLUT_BITMAP_9_BY_15);
-		bitmap_output(20, 625, messages[1], GLUT_BITMAP_9_BY_15);
+		bitmap_text(20, 655, messages[0], GLUT_BITMAP_9_BY_15);
+		bitmap_text(20, 625, messages[1], GLUT_BITMAP_9_BY_15);
 	}
 }
 
@@ -101,16 +101,16 @@ void display()
 	glClear(GL_COLOR_BUFFER_BIT);
 	glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
 
-	display_text();
+	display_messages();
 
 	if (titleHeight > 700)
 	{
-		bitmap_output(275, titleHeight, title, GLUT_BITMAP_HELVETICA_18);
+		bitmap_text(275, titleHeight, title, GLUT_BITMAP_HELVETICA_18);
 		titleHeight--;
 	}
 	else
 	{
-		bitmap_output(275, 700, title, GLUT_BITMAP_HELVETICA_18);
+		bitmap_text(275, 700, title, GLUT_BITMAP_HELVETICA_18);
 	}
 
 	char text[10];
@@ -136,7 +136,7 @@ void display()
 
 		// int_str(a[ix], text);
 		// glColor3f(1, 1, 1);
-		// bitmap_output(13 + (700 / (MAX + 1)) * ix, 135, text, GLUT_BITMAP_HELVETICA_10);
+		// bitmap_text(13 + (700 / (MAX + 1)) * ix, 135, text, GLUT_BITMAP_HELVETICA_10);
 	}
 
 	if (swapflag || sorting == 0)
@@ -179,13 +179,13 @@ A:
 	cout << "";
 }
 
-void makedelay(int)
+void delay(int)
 {
 	if (sorting)
 		bubblesort();
 
 	glutPostRedisplay();
-	glutTimerFunc(SPEED / MAX, makedelay, 1);
+	glutTimerFunc(SPEED / MAX, delay, 1);
 }
 
 void keyboard(unsigned char key, int x, int y)
@@ -220,7 +220,7 @@ int main(int argc, char **argv)
 	glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
 	glutDisplayFunc(display);
 	glutKeyboardFunc(keyboard);
-	glutTimerFunc(1000, makedelay, 1);
+	glutTimerFunc(1000, delay, 1);
 	glutMainLoop();
 
 	return 0;
