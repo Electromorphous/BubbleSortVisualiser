@@ -77,7 +77,7 @@ void Initialize()
 
 	i = j = 0;
 
-	glClearColor(1, 1, 1, 1);
+	// glClearColor(1, 1, 1, 1);
 	glMatrixMode(GL_PROJECTION);
 	glLoadIdentity();
 	gluOrtho2D(0, 699, 0, 799);
